@@ -7,6 +7,9 @@ import lombok.extern.java.Log;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Data
 class Person {
     private final Object name;
@@ -43,5 +46,17 @@ public class JacksonMapperTest {
         IntToString input2 = jsonMapper.readValue(value, IntToString.class);
         Assert.assertEquals(input, input2);
 
+    }
+
+    @Test
+    public void testParallelStream() {
+        Map<String, Integer> map = new HashMap<>();
+        map.put("a", 1);
+        map.put("b", 2);
+        map.put("c", 3);
+        map.put("d", 3);
+        map.values().parallelStream()
+                .peek(x -> System.out.println("processing "+x+" in "+Thread.currentThread()))
+                .forEach(System.out::println);
     }
 }
