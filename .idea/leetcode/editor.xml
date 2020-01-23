@@ -3,11 +3,27 @@
   <component name="LeetcodeEditor">
     <option name="projectConfig">
       <map>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/en/DeleteLeavesWithAGivenValue.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/en/DeleteLeavesWithAGivenValue.java" />
+              <option name="questionId" value="1450" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/en/Maximum69Number.java">
           <value>
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/en/Maximum69Number.java" />
               <option name="questionId" value="1448" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/en/PrintWordsVertically.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/en/PrintWordsVertically.java" />
+              <option name="questionId" value="1449" />
             </LeetcodeEditor>
           </value>
         </entry>
