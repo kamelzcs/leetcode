@@ -79,14 +79,14 @@ public class WordLadderIi {
         Map<String, Set<String>> parent = new HashMap<>();
         Map<SimpleEntry<String, String>, Boolean> valid = new HashMap<>();
         Set<String> visited = new HashSet<>();
-        Map<String, Set<String>> neighbors;
+        Set<String> dict = new HashSet<>();
 
         public List<List<String>> findLadders(String beginWord, String endWord, List<String> wordList) {
-            neighbors = buildNeighbors(beginWord, wordList);
+            dict.addAll(wordList);
             Set<String> currentLayer = new HashSet<>(Arrays.asList(beginWord));
             visited.add(beginWord);
             while (!(currentLayer.isEmpty() || currentLayer.contains(endWord))) {
-                Set<String> nextLayer = currentLayer.stream().flatMap(str -> match(str, neighbors.getOrDefault(str, Collections.emptySet())).stream())
+                Set<String> nextLayer = currentLayer.stream().flatMap(str -> match(str, getNeighbors(str)).stream())
                         .collect(Collectors.toSet());
                 currentLayer = nextLayer;
                 System.out.println(currentLayer);
@@ -100,22 +100,20 @@ public class WordLadderIi {
             return dfs(endWord, beginWord);
         }
 
-        private Map<String, Set<String>> buildNeighbors(String beginWord, List<String> wordList) {
-            Map<String, Set<String>> result = new HashMap<>();
-            Set<String> visited = new HashSet<>();
-            visited.add(beginWord);
-            Queue<String> current = new LinkedList<>();
-            current.add(beginWord);
-            while (!current.isEmpty()) {
-                String top = current.poll();
-                for (String word : wordList) {
-                    if (valid(top, word)) {
-                        result.computeIfAbsent(top, w -> new HashSet<>()).add(word);
-                        if (!visited.contains(word)) {
-                            visited.add(word);
-                            current.add(word);
-                        }
+        private Set<String> getNeighbors(String str) {
+            Set<String> result = new HashSet<>();
+            char[] part = str.toCharArray();
+            for (char c = 'a'; c <= 'z'; c++) {
+                for (int i = 0; i < part.length; i++) {
+                    if (c == part[i]) {
+                        continue;
                     }
+                    part[i] = c;
+                    String candidiate = new String(part);
+                    if (dict.contains(candidiate)) {
+                        result.add(candidiate);
+                    }
+                    part[i] = str.charAt(i);
                 }
             }
             return result;
