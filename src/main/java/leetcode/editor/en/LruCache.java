@@ -34,9 +34,7 @@
 
 package leetcode.editor.en;
 
-import java.util.AbstractMap;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.Map;
 
 public class LruCache {
@@ -45,45 +43,93 @@ public class LruCache {
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
+    class Node {
+        int key;
+        int value;
+        Node prev;
+        Node next;
+
+        Node (int key, int value) {
+            this.key = key;
+            this.value = value;
+        }
+    }
+
+    class DoubleLinkedList {
+        Node root = initRoot();
+
+        private Node initRoot() {
+            Node root = new Node(-1, -1);
+            root.next = root;
+            root.prev = root;
+            return root;
+        }
+
+        void remove(Node node) {
+            Node prevNode = node.prev;
+            Node nextNode = node.next;
+            prevNode.next = nextNode;
+            nextNode.prev = prevNode;
+        }
+
+        void addFirst(Node node) {
+            Node afterRoot = root.next;
+            root.next = node;
+            node.prev = root;
+
+            node.next = afterRoot;
+            afterRoot.prev = node;
+        }
+
+        Node getLast() {
+            return root.prev;
+        }
+
+
+        void removeLast() {
+            remove(getLast());
+        }
+    }
     class LRUCache {
         int capacity;
-        Map<Integer, Map.Entry<Integer, Integer>> map = new HashMap<>();
-        LinkedList<Map.Entry<Integer, Integer>> list = new LinkedList<>();
+        Map<Integer, Node> map = new HashMap<>();
+        DoubleLinkedList list = new DoubleLinkedList();
         public LRUCache(int capacity) {
             this.capacity = capacity;
         }
 
         public int get(int key) {
-            Map.Entry<Integer, Integer> value = map.get(key);
+            Node value = map.get(key);
             if (value == null) {
                 return -1;
             }
             list.remove(value);
             list.addFirst(value);
-            return value.getValue();
+            return value.value;
         }
 
         public void put(int key, int v) {
-            Map.Entry<Integer, Integer> value = map.get(key);
+            Node value = map.get(key);
             // add new
+            final Node node = new Node(key, v);
             if (value == null) {
                 // no capacity
                 if (capacity == 0) {
-                    Map.Entry<Integer, Integer> lastValue = list.getLast();
+                    Node lastValue = list.getLast();
                     list.removeLast();
-                    map.remove(lastValue.getKey());
+                    map.remove(lastValue.key);
 
-                    map.put(key, new AbstractMap.SimpleEntry<>(key, v));
-                    list.addFirst(map.get(key));
+                    map.put(key, node);
+                    list.addFirst(node);
                 } else {
                     capacity--;
-                    map.put(key, new AbstractMap.SimpleEntry<>(key, v));
-                    list.addFirst(map.get(key));
+                    map.put(key, node);
+                    list.addFirst(node);
                 }
             } else {
                 list.remove(value);
-                map.put(key, new AbstractMap.SimpleEntry<>(key, v));
-                list.addFirst(map.get(key));
+                map.put(key, node);
+                list.addFirst(node);
             }
         }
     }
