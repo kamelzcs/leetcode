@@ -30,7 +30,6 @@
   
   package leetcode.editor.en;
 
-  import javax.swing.tree.TreeNode;
   import java.util.AbstractMap;
   import java.util.AbstractMap.SimpleEntry;
 
