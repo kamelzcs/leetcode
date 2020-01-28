@@ -76,100 +76,81 @@ public class WordLadderIi {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        Map<String, Set<String>> parent = new HashMap<>();
-        Map<SimpleEntry<String, String>, Boolean> valid = new HashMap<>();
-        Set<String> visited = new HashSet<>();
-        Set<String> dict = new HashSet<>();
+        Map<String, Integer> distance = new HashMap<>();
+        Set<String> dict;
+        Map<String, Set<String>> cachedNeighbors = new HashMap<>();
 
         public List<List<String>> findLadders(String beginWord, String endWord, List<String> wordList) {
-            dict.addAll(wordList);
-            Set<String> currentLayer = new HashSet<>(Arrays.asList(beginWord));
-            visited.add(beginWord);
-            while (!(currentLayer.isEmpty() || currentLayer.contains(endWord))) {
-                Set<String> nextLayer = currentLayer.stream().flatMap(str -> match(str, getNeighbors(str)).stream())
-                        .collect(Collectors.toSet());
-                currentLayer = nextLayer;
-                System.out.println(currentLayer);
-                visited.addAll(currentLayer);
-            }
-
-            if (!parent.containsKey(endWord)) {
-                return Collections.emptyList();
-            }
-
-            return dfs(endWord, beginWord);
+            dict = new HashSet<>(wordList);
+            bfs(beginWord, endWord);
+            return dfs(beginWord, endWord);
         }
 
-        private Set<String> getNeighbors(String str) {
-            Set<String> result = new HashSet<>();
-            char[] part = str.toCharArray();
-            for (char c = 'a'; c <= 'z'; c++) {
-                for (int i = 0; i < part.length; i++) {
-                    if (c == part[i]) {
-                        continue;
-                    }
-                    part[i] = c;
-                    String candidiate = new String(part);
-                    if (dict.contains(candidiate)) {
-                        result.add(candidiate);
-                    }
-                    part[i] = str.charAt(i);
-                }
-            }
-            return result;
-        }
-
-        private List<List<String>> dfs(String word, String target) {
-            if (Objects.equals(word, target)) {
+        private List<List<String>> dfs(String beginWord, String endWord) {
+            if (beginWord.endsWith(endWord)) {
                 List<List<String>> result = new ArrayList<>();
-                result.add(new ArrayList<>(Arrays.asList(target)));
+                result.add(new LinkedList<>(Arrays.asList(endWord)));
                 return result;
             }
 
+            Set<String> neighbors = getNeighbors(beginWord);
             List<List<String>> result = new ArrayList<>();
-
-            for (String str : parent.get(word)) {
-                List<List<String>> part = dfs(str, target);
-                for (List<String> path : part) {
-                    path.add(word);
-                    result.add(path);
+            for (String neighbor : neighbors) {
+                if (distance.getOrDefault(neighbor, Integer.MIN_VALUE) == distance.get(beginWord) + 1) {
+                    List<List<String>> part = dfs(neighbor, endWord);
+                    part.forEach(l -> {
+                        l.add(0, beginWord);
+                        result.add(l);
+                    });
                 }
             }
+
             return result;
         }
 
-        private Set<String> match(String str, Set<String> wordList) {
-            Set<String> result = new HashSet<>();
-            for (String word : wordList) {
-                if (visited.contains(word)) {
-                    continue;
+        private void bfs(String beginWord, String endWord) {
+            Queue<String> queue = new LinkedList<>();
+            queue.add(beginWord);
+            distance.put(beginWord, 0);
+            while (!queue.isEmpty()) {
+                String top = queue.poll();
+                if (endWord.equals(top)) {
+                    return;
                 }
-                parent.computeIfAbsent(word, w -> new HashSet<>()).add(str);
-                result.add(word);
-            }
-            return result;
-        }
 
-        private boolean valid(String str, String word) {
-            SimpleEntry<String, String> pair = new SimpleEntry<>(str, word);
-            return valid.computeIfAbsent(pair, this::validDiff);
-        }
-
-        private boolean validDiff(SimpleEntry<String, String> p) {
-            String key = p.getKey();
-            String value = p.getValue();
-            int count = 0;
-            for (int i = 0; i < key.length(); i++) {
-                if (key.charAt(i) != value.charAt(i)) {
-                    count++;
-                    if (count > 1) {
-                        return false;
+                Set<String> neightbors = getNeighbors(top);
+                for (String neighbor : neightbors) {
+                    if (!distance.containsKey(neighbor)) {
+                        distance.put(neighbor, distance.get(top) + 1);
+                        queue.add(neighbor);
                     }
                 }
             }
-            return count == 1;
+        }
+
+        private Set<String> getNeighbors(String beginWord) {
+            return cachedNeighbors.computeIfAbsent(beginWord, w -> getNeighborsUncached(beginWord));
+        }
+
+        private Set<String> getNeighborsUncached(String beginWord) {
+            Set<String> neightbors = new HashSet<>();
+            char[] chars = beginWord.toCharArray();
+            for (char c = 'a'; c <= 'z'; c++) {
+                for (int i = 0; i < chars.length; i++) {
+                    if (c == chars[i]) {
+                        continue;
+                    }
+
+                    chars[i] = c;
+                    String candidate = new String(chars);
+                    if (dict.contains(candidate)) {
+                        neightbors.add(candidate);
+                    }
+                    chars[i] = beginWord.charAt(i);
+                }
+            }
+            return neightbors;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
-
 }
