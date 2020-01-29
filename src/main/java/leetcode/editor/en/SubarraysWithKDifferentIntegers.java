@@ -45,98 +45,54 @@ import java.util.Map;
 public class SubarraysWithKDifferentIntegers {
     public static void main(String[] args) {
         Solution solution = new SubarraysWithKDifferentIntegers().new Solution();
-        System.out.println(solution.subarraysWithKDistinct(new int[]{1,2,1,2,3}, 2));
+        System.out.println(solution.subarraysWithKDistinct(new int[]{1, 2, 1, 2, 3}, 2));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
-    class Pair {
-        int value;
-        int index;
-        Pair(int l, int r) {
-            this.value = l;
-            this.index = r;
+    class Window {
+        Map<Integer, Integer> map = new HashMap<>();
+        int size() {
+            return map.size();
+        }
+        void add(int value) {
+            map.put(value, map.getOrDefault(value, 0) + 1);
+        }
+
+        void remove(int value) {
+            int occurs = map.get(value);
+            if (occurs == 1) {
+                map.remove(value);
+            } else {
+                map.put(value, occurs - 1);
+            }
         }
     }
-
-    class Node {
-        Pair pair;
-        Node next;
-        Node prev;
-        Node (Pair pair) {
-            this.pair = pair;
-        }
-
-        void addAfter(Node node) {
-            Node after = this.next;
-            this.next = node;
-            node.prev = this;
-
-            node.next = after;
-            after.prev = node;
-        }
-
-        void delete() {
-            Node prev = this.prev;
-            Node next = this.next;
-
-            prev.next = next;
-            next.prev = prev;
-        }
-    }
-
-    class DoubleList {
-        Node root;
-
-        DoubleList() {
-            root = new Node(new Pair(-1, -1));
-            root.prev = root;
-            root.next = root;
-        }
-
-        void addToTail(Node node) {
-            Node tail = root.prev;
-            tail.addAfter(node);
-        }
-
-        Node head() {
-            return root.next;
-        }
-
-        void remove(Node node) {
-            node.delete();
-        }
-    }
-
     class Solution {
-        Map<Integer, Node> map = new HashMap<>();
-        DoubleList list = new DoubleList();
         public int subarraysWithKDistinct(int[] A, int K) {
+            int leftEnd = 0;
+            int rightEnd = 0;
+            Window leftWindow = new Window();
+            Window rightWindow = new Window();
             int result = 0;
             for (int i = 0; i < A.length; i++) {
-                int v = A[i];
-
-                Node node = new Node(new Pair(v, i));
-                if (!map.containsKey(v)) {
-                    list.addToTail(node);
-                } else {
-                    Node existing = map.get(v);
-                    list.remove(existing);
-                    list.addToTail(node);
+                int value = A[i];
+                rightWindow.add(value);
+                while (rightWindow.size() == K) {
+                    int rightValue = A[rightEnd];
+                    rightWindow.remove(rightValue);
+                    rightEnd++;
                 }
-                map.put(v, node);
 
-                if (map.size() == K) {
-                    result += list.head().pair.index + 1;
-                } else if (map.size() == K + 1) {
-                    result += list.head().next.pair.index - list.head().pair.index;
-                } else if (map.size() == K + 2) {
-                    map.remove(list.head().pair.value);
-                    list.remove(list.head());
-                    result += list.head().next.pair.index - list.head().pair.index;
+                leftWindow.add(value);
+                while (leftWindow.size() == K + 1) {
+                    int leftValue = A[leftEnd];
+                    leftWindow.remove(leftValue);
+                    leftEnd++;
                 }
+                result += (rightEnd - leftEnd);
             }
             return result;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
-}
+    }
