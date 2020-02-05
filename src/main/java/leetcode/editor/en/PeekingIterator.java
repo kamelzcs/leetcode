@@ -23,15 +23,12 @@
   package leetcode.editor.en;
 
   import java.net.Inet4Address;
+  import java.util.Iterator;
 
-  public class PeekingIterator{
-      public static void main(String[] args) {
-           Solution solution = new PeekingIterator().new Solution();
-      }
       //leetcode submit region begin(Prohibit modification and deletion)
 // Java Iterator interface reference:
 // https://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html
-class PeekingIterator implements Iterator<Integer> {
+public class PeekingIterator implements Iterator<Integer> {
 
           Integer last;
 		  Iterator<Integer> iterator;
@@ -67,4 +64,3 @@ class PeekingIterator implements Iterator<Integer> {
 }
 //leetcode submit region end(Prohibit modification and deletion)
 
-  }
