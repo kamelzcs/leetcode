@@ -74,6 +74,7 @@ import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -87,7 +88,7 @@ public class TweetCountsPerFrequency {
     //leetcode submit region begin(Prohibit modification and deletion)
     class TweetCounts {
         Map<String, Integer> freqMap;
-        Map<String, TreeMap<Integer, Integer>> tweetMap;
+        Map<String, List<Integer>> tweetMap;
         public TweetCounts() {
             freqMap = new HashMap<>();
             freqMap.put("minute", 60);
@@ -97,17 +98,38 @@ public class TweetCountsPerFrequency {
         }
 
         public void recordTweet(String tweetName, int time) {
-            tweetMap.computeIfAbsent(tweetName, x -> new TreeMap<>());
-            TreeMap<Integer, Integer> existing = tweetMap.get(tweetName);
-            existing.put(time, existing.getOrDefault(time, 0) + 1);
+            tweetMap.computeIfAbsent(tweetName, x -> new LinkedList<>());
+            List<Integer> times = tweetMap.get(tweetName);
+            if (times.isEmpty()) {
+                times.add(time);
+            } else {
+                for (int i = 0; i < times.size(); i++) {
+                    if (times.get(i) >= time) {
+                        times.add(i, time);
+                        return;
+                    }
+                }
+                times.add(times.size(), time);
+            }
         }
 
         public List<Integer> getTweetCountsPerFrequency(String freq, String tweetName, int startTime, int endTime) {
             int freqInSeconds = freqMap.get(freq);
             List<Integer> result = new ArrayList<>();
-            TreeMap<Integer, Integer> tweets = tweetMap.getOrDefault(tweetName, new TreeMap<>());
+            List<Integer> tweets = tweetMap.getOrDefault(tweetName, new ArrayList<>());
+            int listIndex = 0;
             for (int delta = 0; startTime + delta * freqInSeconds <= endTime; delta++) {
-                result.add(tweets.subMap(startTime + delta * freqInSeconds, Math.min(startTime + (delta + 1) * freqInSeconds, endTime + 1)).values().stream().mapToInt(x -> x).sum());
+                int currentStart = startTime + delta * freqInSeconds;
+                int currentEnd = Math.min(currentStart + freqInSeconds - 1, endTime);
+                int currentCount = 0;
+                while (listIndex < tweets.size() && tweets.get(listIndex) < currentStart) {
+                    listIndex++;
+                }
+                while (listIndex < tweets.size() && tweets.get(listIndex) <= currentEnd) {
+                    listIndex++;
+                    currentCount++;
+                }
+                result.add(currentCount);
             }
             return result;
         }
