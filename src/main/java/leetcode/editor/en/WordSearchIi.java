@@ -52,7 +52,7 @@ public class WordSearchIi {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Node {
         Map<Character, Node> map = new HashMap<>();
-        boolean isEnd;
+        String word;
     }
 
     class Trie {
@@ -63,8 +63,7 @@ public class WordSearchIi {
             for (char c : word.toCharArray()) {
                 current = current.map.computeIfAbsent(c, x -> new Node());
             }
-
-            current.isEnd = true;
+            current.word = word;
         }
     }
 
@@ -89,17 +88,21 @@ public class WordSearchIi {
             for (String word : words) {
                 trie.insert(word);
             }
-            Set<String> result = new HashSet<>();
+            List<String> result = new ArrayList<>();
             for (int i = 0; i < rows; i++) {
                 for (int j = 0; j < cols; j++) {
-                    result.addAll(dfs(new StringBuilder(), trie.root, i, j));
+                    result.addAll(dfs(trie.root, i, j));
                 }
             }
-            return new ArrayList<>(result);
+            return result;
         }
 
-        private List<String> dfs(StringBuilder existing, Node current, int row, int col) {
+        private List<String> dfs(Node current, int row, int col) {
             List<String> result = new ArrayList<>();
+            if (current.word != null) {
+                result.add(current.word);
+                current.word = null;
+            }
             if (row < 0 || row >= rows || col < 0 || col >= cols || visited[row][col]) {
                 return result;
             }
@@ -107,15 +110,10 @@ public class WordSearchIi {
             if (!current.map.containsKey(c)) {
                 return result;
             }
-            existing.append(c);
-            if (current.map.get(c).isEnd) {
-                result.add(existing.toString());
-            }
             visited[row][col] = true;
             for (int[] xy : dxy) {
-                result.addAll(dfs(existing, current.map.get(c), row + xy[0], col + xy[1]));
+                result.addAll(dfs(current.map.get(c), row + xy[0], col + xy[1]));
             }
-            existing.deleteCharAt(existing.length() - 1);
             visited[row][col] = false;
             return result;
         }
