@@ -50,27 +50,25 @@ public class MaximumLengthOfPairChain {
         }
     }
     class Solution {
-        TreeSet<Integer> set = new TreeSet<>();
+        List<Pair> candidate = new ArrayList<>();
         public int findLongestChain(int[][] pairs) {
             List<Pair> list = Arrays.stream(pairs)
                     .map(pair -> new Pair(pair[0], pair[1]))
                     .sorted(Comparator.comparingInt(x -> x.left))
                     .collect(Collectors.toList());
             for (Pair pair: list) {
-                if (set.isEmpty()) {
-                    set.add(pair.right);
+                if (candidate.isEmpty()) {
+                    candidate.add(new Pair(pair.left, pair.right));
                 } else {
-                    Integer smaller = set.floor(pair.left - 1);
-                    Integer last = set.last();
-                    if (smaller == last) {
-                        set.add(pair.right);
+                    Pair last = candidate.get(candidate.size() - 1);
+                    if (pair.left > last.right) {
+                        candidate.add(new Pair(pair.left, pair.right));
                     } else {
-                        set.remove(last);
-                        set.add(Math.min(last, pair.right));
+                        last.right = Math.min(last.right, pair.right);
                     }
                 }
             }
-            return set.size();
+            return candidate.size();
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
