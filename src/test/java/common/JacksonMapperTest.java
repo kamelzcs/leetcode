@@ -2,7 +2,9 @@ package common;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.json.JsonMapper;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.extern.java.Log;
 import org.junit.Assert;
 import org.junit.Test;
@@ -10,18 +12,22 @@ import org.junit.Test;
 import java.util.HashMap;
 import java.util.Map;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Data
 class Person {
-    private final Object name;
+    private Object name;
 }
 
 interface InputOut<IN, OUT> {
     OUT transform(IN in);
 }
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Data
 class IntToString implements InputOut<Integer, String> {
-    private final Integer input;
+    private Integer input;
     @Override
     public String transform(Integer integer) {
         return null;

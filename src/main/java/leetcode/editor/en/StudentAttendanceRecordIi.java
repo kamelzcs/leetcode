@@ -39,8 +39,6 @@
 
 package leetcode.editor.en;
 
-import com.sun.org.apache.xpath.internal.operations.Mod;
-
 import java.util.Arrays;
 
 public class StudentAttendanceRecordIi {

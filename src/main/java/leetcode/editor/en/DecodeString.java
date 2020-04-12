@@ -27,6 +27,7 @@ package leetcode.editor.en;
 
 import java.util.Collections;
 import java.util.Optional;
+import java.util.Stack;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

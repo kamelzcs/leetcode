@@ -35,25 +35,25 @@ public class MergeKSortedLists {
      * }
      */
     class Solution {
-        public ListNode mergeKLists(ListNode[] lists) {
-            ListNode root = new ListNode(-1);
-            ListNode current = root;
-            PriorityQueue<ListNode> pq = new PriorityQueue<ListNode>(lists.length + 1, Comparator.comparingInt((ListNode x) -> x.val));
-            for (ListNode listNode : lists) {
-                if (listNode != null) {
-                    pq.add(listNode);
-                }
-            }
-            while (!pq.isEmpty()) {
-                ListNode top = pq.poll();
-                current.next = top;
-                current = current.next;
-                if (top.next != null) {
-                    pq.add(top.next);
-                }
-            }
-            return root.next;
-        }
+//        public ListNode mergeKLists(ListNode[] lists) {
+//            ListNode root = new ListNode(-1);
+//            ListNode current = root;
+//            PriorityQueue<ListNode> pq = new PriorityQueue<ListNode>(lists.length + 1, Comparator.comparingInt((ListNode x) -> x.val));
+//            for (ListNode listNode : lists) {
+//                if (listNode != null) {
+//                    pq.add(listNode);
+//                }
+//            }
+//            while (!pq.isEmpty()) {
+//                ListNode top = pq.poll();
+//                current.next = top;
+//                current = current.next;
+//                if (top.next != null) {
+//                    pq.add(top.next);
+//                }
+//            }
+//            return root.next;
+//        }
     }
 //leetcode submit region end(Prohibit modification and deletion)
 
