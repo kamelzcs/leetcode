@@ -1,0 +1,10 @@
+3
+  2
+  A*C*E
+  *B*D*
+  2
+  CODE*
+  *JAM
+2
+*XZ
+*XYZ

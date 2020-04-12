@@ -28,6 +28,7 @@ dependencies {
 
 task execute(type:JavaExec) {
     classpath = sourceSets.main.runtimeClasspath
-
     main = project.hasProperty("mainClass") ? project.getProperty("mainClass") : "package.MyDefaultMain"
+    standardInput = System.in
+    // gradle -PmainClass=codejam.qualitification1A.pascalwalk.Solution execute < /home/kamel/Code/java/LeetCode/data/gcj2020/q1a/pascalwalk/input.txt | tee /home/kamel/Code/java/LeetCode/data/gcj2020/q1a/pascalwalk/output.txt
 }
