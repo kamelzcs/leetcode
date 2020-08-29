@@ -26,9 +26,27 @@ dependencies {
     testCompile "org.mockito:mockito-core:2.+"
 }
 
-task execute(type:JavaExec) {
+task execute(type: JavaExec) {
     classpath = sourceSets.main.runtimeClasspath
     main = project.hasProperty("mainClass") ? project.getProperty("mainClass") : "package.MyDefaultMain"
     standardInput = System.in
-    // gradle -PmainClass=codejam.qualitification1A.pascalwalk.Solution execute < /home/kamel/Code/java/LeetCode/data/gcj2020/q1a/pascalwalk/input.txt | tee /home/kamel/Code/java/LeetCode/data/gcj2020/q1a/pascalwalk/output.txt
+    // gradle -q -PmainClass=codejam.qualitification1A.pascalwalk.Solution execute < /home/kamel/Code/java/LeetCode/data/gcj2020/q1a/pascalwalk/input.txt | tee /home/kamel/Code/java/LeetCode/data/gcj2020/q1a/pascalwalk/output.txt
+}
+
+task atcoder() {
+    contest = project.getProperty("contest")
+    def template = "src/main/java/atcoder/Main.java"
+    def contestPath = "src/main/java/atcoder"
+    doLast {
+        for (item in ["a", "b", "c", "d", "e", "f"]) {
+            def problemPath = "${contestPath}/abc${contest}/${item}"
+            println(problemPath)
+            println(template)
+            mkdir(problemPath)
+            copy {
+                from template
+                into problemPath
+            }
+        }
+    }
 }
