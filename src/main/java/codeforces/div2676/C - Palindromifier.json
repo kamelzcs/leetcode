@@ -1,0 +1,44 @@
+{
+  "name" : "C - Palindromifier",
+  "testType" : "SINGLE",
+  "input" : {
+    "type" : "STANDARD",
+    "fileName" : "input.txt"
+  },
+  "output" : {
+    "type" : "STANDARD",
+    "fileName" : "output.txt"
+  },
+  "tests" : [ {
+    "input" : "abac\n",
+    "output" : "2\nR 2\nR 5\n",
+    "index" : 0,
+    "active" : true
+  }, {
+    "input" : "acccc\n",
+    "output" : "2\nL 4\nL 2\n",
+    "index" : 1,
+    "active" : true
+  }, {
+    "input" : "hannah\n",
+    "output" : "0",
+    "index" : 2,
+    "active" : true
+  } ],
+  "location" : "src/main/java/codeforces/div2676",
+  "vmArgs" : "-Xmx256M",
+  "mainClass" : "Main",
+  "taskClass" : "codeforces.div2676.TaskC",
+  "checkerClass" : "net.egork.chelper.checkers.TokenChecker",
+  "checkerParameters" : "",
+  "testClasses" : [ ],
+  "date" : "2020.10.18",
+  "contestName" : "Codeforces Round #676 (Div. 2)",
+  "truncate" : true,
+  "inputClass" : "java.util.Scanner",
+  "outputClass" : "java.io.PrintWriter",
+  "includeLocale" : false,
+  "failOnOverflow" : false,
+  "interactive" : false,
+  "interactor" : "net.egork.chelper.tester.Interactor"
+}

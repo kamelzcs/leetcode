@@ -1,0 +1,39 @@
+{
+  "name" : "TaskB",
+  "testType" : "SINGLE",
+  "input" : {
+    "type" : "STANDARD",
+    "fileName" : "input.txt"
+  },
+  "output" : {
+    "type" : "STANDARD",
+    "fileName" : "output.txt"
+  },
+  "tests" : [ {
+    "input" : "5\n00101\n",
+    "output" : "Takahashi\n",
+    "index" : 0,
+    "active" : true
+  }, {
+    "input" : "3\n010\n",
+    "output" : "Aoki\n",
+    "index" : 1,
+    "active" : true
+  } ],
+  "location" : "src/main/java/atcoder/abc210",
+  "vmArgs" : "-Xmx256m -Xss64m",
+  "mainClass" : "Main",
+  "taskClass" : "atcoder.abc210.TaskB",
+  "checkerClass" : "net.egork.chelper.checkers.TokenChecker",
+  "checkerParameters" : "",
+  "testClasses" : [ ],
+  "date" : "2021.07.20",
+  "contestName" : "",
+  "truncate" : true,
+  "inputClass" : "common.InputReader",
+  "outputClass" : "java.io.PrintWriter",
+  "includeLocale" : false,
+  "failOnOverflow" : false,
+  "interactive" : false,
+  "interactor" : "net.egork.chelper.tester.Interactor"
+}

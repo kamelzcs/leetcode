@@ -1,0 +1,56 @@
+{
+  "name" : "PoisonedSwamp",
+  "signature" : {
+    "name" : "cross",
+    "result" : "String",
+    "arguments" : [ "String[]" ],
+    "argumentNames" : [ "swamp" ]
+  },
+  "tests" : [ {
+    "arguments" : [ ".....ф####.ф.....ф.####ф....." ],
+    "result" : "possible",
+    "index" : 0,
+    "active" : true
+  }, {
+    "arguments" : [ ".....ф####.ф97...ф9#2##ф97..." ],
+    "result" : "possible",
+    "index" : 1,
+    "active" : true
+  }, {
+    "arguments" : [ ".111111111.ф.#########.ф..22222...." ],
+    "result" : "possible",
+    "index" : 2,
+    "active" : true
+  }, {
+    "arguments" : [ ".#222#111ф4#S#2#1#Sф4#3#S#1#9фS33#111#." ],
+    "result" : "possible",
+    "index" : 3,
+    "active" : true
+  }, {
+    "arguments" : [ "..111111111111..ф###############." ],
+    "result" : "impossible",
+    "index" : 4,
+    "active" : true
+  }, {
+    "arguments" : [ "..111111111111..ф#######S#######." ],
+    "result" : "possible",
+    "index" : 5,
+    "active" : true
+  }, {
+    "arguments" : [ "..#.#.ф..#.#.ф#5#.5.ф....#." ],
+    "result" : "impossible",
+    "index" : 6,
+    "active" : true
+  }, {
+    "arguments" : [ ".1.#.ф.9.#.ф.###.ф2#.1.ф.#.7." ],
+    "result" : "impossible",
+    "index" : 7,
+    "active" : true
+  } ],
+  "date" : "2021.02.23",
+  "contestName" : "TopCoder SRM #800",
+  "testClasses" : [ ],
+  "fqn" : "tc.srm800.PoisonedSwamp",
+  "failOnOverflow" : false,
+  "memoryLimit" : "256M"
+}

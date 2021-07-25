@@ -1,0 +1,31 @@
+{
+  "name" : "MinMaxGame",
+  "signature" : {
+    "name" : "lastNumber",
+    "result" : "int",
+    "arguments" : [ "int[]" ],
+    "argumentNames" : [ "A" ]
+  },
+  "tests" : [ {
+    "arguments" : [ "3 2 1" ],
+    "result" : "3",
+    "index" : 0,
+    "active" : true
+  }, {
+    "arguments" : [ "2 5 3 7" ],
+    "result" : "2",
+    "index" : 1,
+    "active" : true
+  }, {
+    "arguments" : [ "4 5 1 6 5" ],
+    "result" : "5",
+    "index" : 2,
+    "active" : true
+  } ],
+  "date" : "2021.02.23",
+  "contestName" : "TopCoder SRM #800",
+  "testClasses" : [ ],
+  "fqn" : "tc.srm800.MinMaxGame",
+  "failOnOverflow" : false,
+  "memoryLimit" : "256M"
+}

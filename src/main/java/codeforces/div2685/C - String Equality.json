@@ -1,0 +1,34 @@
+{
+  "name" : "C - String Equality",
+  "testType" : "MULTI_NUMBER",
+  "input" : {
+    "type" : "STANDARD",
+    "fileName" : "input.txt"
+  },
+  "output" : {
+    "type" : "STANDARD",
+    "fileName" : "output.txt"
+  },
+  "tests" : [ {
+    "input" : "4\n3 3\nabc\nbcd\n4 2\nabba\nazza\n2 1\nzz\naa\n6 2\naaabba\nddddcc\n",
+    "output" : "No\nYes\nNo\nYes\n",
+    "index" : 0,
+    "active" : true
+  } ],
+  "location" : "src/main/java/codeforces/div2685",
+  "vmArgs" : "-Xmx256M",
+  "mainClass" : "Main",
+  "taskClass" : "codeforces.div2685.TaskC",
+  "checkerClass" : "net.egork.chelper.checkers.TokenChecker",
+  "checkerParameters" : "",
+  "testClasses" : [ ],
+  "date" : "2020.11.27",
+  "contestName" : "Codeforces Round #685 (Div. 2)",
+  "truncate" : true,
+  "inputClass" : "common.InputReader",
+  "outputClass" : "java.io.PrintWriter",
+  "includeLocale" : false,
+  "failOnOverflow" : false,
+  "interactive" : false,
+  "interactor" : "net.egork.chelper.tester.Interactor"
+}

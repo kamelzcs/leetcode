@@ -1,0 +1,36 @@
+{
+  "name" : "MaximumPenalty",
+  "signature" : {
+    "name" : "schedule",
+    "result" : "int[]",
+    "arguments" : [ "int[]", "int[]" ],
+    "argumentNames" : [ "L", "P" ]
+  },
+  "tests" : [ {
+    "arguments" : [ "7 4 1", "0 0 0 1 0 0 2 0 0 3 0 0" ],
+    "result" : "0 2 1",
+    "index" : 0,
+    "active" : true
+  }, {
+    "arguments" : [ "7 4 2 5", "47 0 0 0 47 0 0 0 47 0 0 0 47 0 0 0" ],
+    "result" : "3 2 1 0",
+    "index" : 1,
+    "active" : true
+  }, {
+    "arguments" : [ "7 4 2 5", "0 47 0 0 0 47 0 0 0 47 0 0 0 47 0 0" ],
+    "result" : "3 2 1 0",
+    "index" : 2,
+    "active" : true
+  }, {
+    "arguments" : [ "7 4 2 5", "0 7 8 15 1 6 9 14 2 5 10 13 3 4 11 12" ],
+    "result" : "0 1 2 3",
+    "index" : 3,
+    "active" : true
+  } ],
+  "date" : "2021.02.23",
+  "contestName" : "TopCoder SRM #800",
+  "testClasses" : [ ],
+  "fqn" : "tc.srm800.MaximumPenalty",
+  "failOnOverflow" : false,
+  "memoryLimit" : "256M"
+}

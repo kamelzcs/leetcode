@@ -1,0 +1,49 @@
+{
+  "name" : "TaskE",
+  "testType" : "SINGLE",
+  "input" : {
+    "type" : "STANDARD",
+    "fileName" : "input.txt"
+  },
+  "output" : {
+    "type" : "STANDARD",
+    "fileName" : "output.txt"
+  },
+  "tests" : [ {
+    "input" : "3 2 1 3\n1 2 2 3\n2 3 3 4\n",
+    "output" : "7\n",
+    "index" : 0,
+    "active" : true
+  }, {
+    "input" : "3 2 3 1\n1 2 2 3\n2 3 3 4\n",
+    "output" : "5\n",
+    "index" : 1,
+    "active" : true
+  }, {
+    "input" : "3 0 3 1\n",
+    "output" : "-1\n",
+    "index" : 2,
+    "active" : true
+  }, {
+    "input" : "9 14 6 7\n3 1 4 1\n5 9 2 6\n5 3 5 8\n9 7 9 3\n2 3 8 4\n6 2 6 4\n3 8 3 2\n7 9 5 2\n8 4 1 9\n7 1 6 9\n3 9 9 3\n7 5 1 5\n8 2 9 7\n4 9 4 4\n",
+    "output" : "26\n",
+    "index" : 3,
+    "active" : true
+  } ],
+  "location" : "src/main/java/atcoder/sompo2021",
+  "vmArgs" : "-Xmx256m -Xss64m",
+  "mainClass" : "Main",
+  "taskClass" : "atcoder.sompo2021.TaskE",
+  "checkerClass" : "net.egork.chelper.checkers.TokenChecker",
+  "checkerParameters" : "",
+  "testClasses" : [ ],
+  "date" : "2021.02.20",
+  "contestName" : "",
+  "truncate" : true,
+  "inputClass" : "common.InputReader",
+  "outputClass" : "java.io.PrintWriter",
+  "includeLocale" : false,
+  "failOnOverflow" : false,
+  "interactive" : false,
+  "interactor" : "net.egork.chelper.tester.Interactor"
+}

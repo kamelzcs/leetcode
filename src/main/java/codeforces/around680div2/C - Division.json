@@ -1,0 +1,38 @@
+{
+  "name" : "C - Division",
+  "testType" : "MULTI_NUMBER",
+  "input" : {
+    "type" : "STANDARD",
+    "fileName" : "input.txt"
+  },
+  "output" : {
+    "type" : "STANDARD",
+    "fileName" : "output.txt"
+  },
+  "tests" : [ {
+    "input" : "3\n10 4\n12 6\n179 822\n",
+    "output" : "10\n4\n179\n",
+    "index" : 0,
+    "active" : true
+  }, {
+    "input" : "1\n100000000000000000 1000000000",
+    "index" : 1,
+    "active" : true
+  } ],
+  "location" : "src/main/java/codeforces/around680div2",
+  "vmArgs" : "-Xmx512M",
+  "mainClass" : "Main",
+  "taskClass" : "codeforces.around680div2.TaskC",
+  "checkerClass" : "net.egork.chelper.checkers.TokenChecker",
+  "checkerParameters" : "",
+  "testClasses" : [ ],
+  "date" : "2020.11.02",
+  "contestName" : "Codeforces Round #680 (Div. 2, based on Moscow Team Olympiad)",
+  "truncate" : true,
+  "inputClass" : "common.InputReader",
+  "outputClass" : "java.io.PrintWriter",
+  "includeLocale" : false,
+  "failOnOverflow" : false,
+  "interactive" : false,
+  "interactor" : "net.egork.chelper.tester.Interactor"
+}

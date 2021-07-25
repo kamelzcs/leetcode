@@ -1,0 +1,49 @@
+{
+  "name" : "TaskD",
+  "testType" : "SINGLE",
+  "input" : {
+    "type" : "STANDARD",
+    "fileName" : "input.txt"
+  },
+  "output" : {
+    "type" : "STANDARD",
+    "fileName" : "output.txt"
+  },
+  "tests" : [ {
+    "input" : "5 3\n3 1 4\n1 5 9\n2 6 5\n3 5 8\n9 7 9\n",
+    "output" : "56\n",
+    "index" : 0,
+    "active" : true
+  }, {
+    "input" : "5 3\n1 -2 3\n-4 5 -6\n7 -8 -9\n-10 11 -12\n13 -14 15\n",
+    "output" : "54\n",
+    "index" : 1,
+    "active" : true
+  }, {
+    "input" : "10 5\n10 -80 21\n23 8 38\n-94 28 11\n-26 -2 18\n-69 72 79\n-26 -86 -54\n-72 -50 59\n21 65 -32\n40 -94 87\n-62 18 82\n",
+    "output" : "638\n",
+    "index" : 2,
+    "active" : true
+  }, {
+    "input" : "3 2\n2000000000 -9000000000 4000000000\n7000000000 -5000000000 3000000000\n6000000000 -1000000000 8000000000\n",
+    "output" : "30000000000\n",
+    "index" : 3,
+    "active" : true
+  } ],
+  "location" : "src/main/java/atcoder/abc100",
+  "vmArgs" : "-Xmx256m -Xss64m",
+  "mainClass" : "Main",
+  "taskClass" : "atcoder.abc100.TaskD",
+  "checkerClass" : "net.egork.chelper.checkers.TokenChecker",
+  "checkerParameters" : "",
+  "testClasses" : [ ],
+  "date" : "2021.02.15",
+  "contestName" : "",
+  "truncate" : true,
+  "inputClass" : "common.InputReader",
+  "outputClass" : "java.io.PrintWriter",
+  "includeLocale" : false,
+  "failOnOverflow" : false,
+  "interactive" : false,
+  "interactor" : "net.egork.chelper.tester.Interactor"
+}

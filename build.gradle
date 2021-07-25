@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-    id "io.freefair.lombok" version "5.0.1"
+    id "io.freefair.lombok" version "5.2.1"
 }
 
 group 'Ind'
@@ -15,7 +15,7 @@ repositories {
 }
 
 dependencies {
-    implementation files('/home/kamel/Code/java/chelper3.0beta13.jar')
+    implementation fileTree(dir: '/home/kamel/Code/java/chelper/lib', includes: ['*.jar'])
     compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.11.0'
     compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.11.0'
     compile 'com.google.guava:guava:28.1-jre'
@@ -34,7 +34,7 @@ task execute(type: JavaExec) {
 }
 
 task atcoder() {
-    contest = project.getProperty("contest")
+    def contest =  project.hasProperty("contest") ? project.getProperty("contest") : "default"
     def template = "src/main/java/atcoder/Main.java"
     def contestPath = "src/main/java/atcoder"
     doLast {

@@ -1,0 +1,31 @@
+{
+  "name" : "C - Perfect Triples",
+  "testType" : "SINGLE",
+  "input" : {
+    "type" : "STANDARD"
+  },
+  "output" : {
+    "type" : "STANDARD"
+  },
+  "tests" : [ {
+    "input" : "9\n1\n2\n3\n4\n5\n6\n7\n8\n9",
+    "output" : "1\n2\n3\n4\n8\n12\n5\n10\n15\n",
+    "index" : 0,
+    "active" : true
+  } ],
+  "location" : "src/main/java/codeforces/round633div1",
+  "vmArgs" : "-Xmx256M",
+  "mainClass" : "Main",
+  "taskClass" : "codeforces.round633div1.TaskC",
+  "checkerClass" : "net.egork.chelper.checkers.TokenChecker",
+  "checkerParameters" : "",
+  "testClasses" : [ ],
+  "date" : "2020.06.25",
+  "contestName" : "Codeforces Round #633 (Div. 1)",
+  "truncate" : true,
+  "inputClass" : "java.util.Scanner",
+  "outputClass" : "java.io.PrintWriter",
+  "includeLocale" : false,
+  "failOnOverflow" : false,
+  "interactive" : false
+}

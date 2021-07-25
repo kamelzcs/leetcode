@@ -1,0 +1,44 @@
+{
+  "name" : "C - Berpizza",
+  "testType" : "SINGLE",
+  "input" : {
+    "type" : "STANDARD",
+    "fileName" : "input.txt"
+  },
+  "output" : {
+    "type" : "STANDARD",
+    "fileName" : "output.txt"
+  },
+  "tests" : [ {
+    "input" : "8\n1 8\n1 10\n1 6\n3\n2\n1 9\n2\n3\n",
+    "output" : "2 1 3 4 ",
+    "index" : 0,
+    "active" : true
+  }, {
+    "input" : "6\n1 8\n1 10\n1 8\n3\n3\n3\n",
+    "output" : "2 1 3 ",
+    "index" : 1,
+    "active" : true
+  }, {
+    "input" : "8\n1 103913\n3\n1 103913\n1 103913\n3\n1 103913\n1 103913\n2\n",
+    "output" : "1 2 3 ",
+    "index" : 2,
+    "active" : true
+  } ],
+  "location" : "src/main/java/codeforces/nerc20202021",
+  "vmArgs" : "-Xmx512M",
+  "mainClass" : "Main",
+  "taskClass" : "codeforces.nerc20202021.TaskC",
+  "checkerClass" : "net.egork.chelper.checkers.TokenChecker",
+  "checkerParameters" : "",
+  "testClasses" : [ ],
+  "date" : "2020.12.25",
+  "contestName" : "2020-2021 ICPC, NERC, Southern and Volga Russian Regional Contest (Online Mirror, ICPC Rules)",
+  "truncate" : true,
+  "inputClass" : "common.InputReader",
+  "outputClass" : "java.io.PrintWriter",
+  "includeLocale" : false,
+  "failOnOverflow" : false,
+  "interactive" : false,
+  "interactor" : "net.egork.chelper.tester.Interactor"
+}

@@ -9,6 +9,7 @@ import lombok.extern.java.Log;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,7 +38,7 @@ class IntToString implements InputOut<Integer, String> {
 public class JacksonMapperTest {
     JsonMapper jsonMapper = new JsonMapper();
     @Test
-    public void test() throws JsonProcessingException {
+    public void test() throws IOException {
         Person person = new Person("null");
         String personValue = jsonMapper.writeValueAsString(person);
         Person person1 = jsonMapper.readValue(personValue, Person.class);
@@ -45,13 +46,12 @@ public class JacksonMapperTest {
     }
 
     @Test
-    public void testGenerics() throws JsonProcessingException {
+    public void testGenerics() throws IOException {
         IntToString input = new IntToString(1);
         String value = jsonMapper.writeValueAsString(input);
         log.info(value);
         IntToString input2 = jsonMapper.readValue(value, IntToString.class);
         Assert.assertEquals(input, input2);
-
     }
 
     @Test

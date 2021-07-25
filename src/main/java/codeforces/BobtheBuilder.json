@@ -1,0 +1,51 @@
+{
+  "name" : "BobtheBuilder",
+  "signature" : {
+    "name" : "minimumPrice",
+    "result" : "int",
+    "arguments" : [ "int", "int", "int" ],
+    "argumentNames" : [ "B", "K", "H" ]
+  },
+  "tests" : [ {
+    "arguments" : [ "65", "5", "6" ],
+    "result" : "1",
+    "index" : 0,
+    "active" : true
+  }, {
+    "arguments" : [ "3", "2", "2" ],
+    "result" : "-1",
+    "index" : 1,
+    "active" : true
+  }, {
+    "arguments" : [ "5", "6", "79" ],
+    "result" : "13",
+    "index" : 2,
+    "active" : true
+  }, {
+    "arguments" : [ "94", "1", "25" ],
+    "result" : "2",
+    "index" : 3,
+    "active" : true
+  }, {
+    "arguments" : [ "289", "5", "17" ],
+    "result" : "0",
+    "index" : 4,
+    "active" : true
+  }, {
+    "arguments" : [ "90", "1", "82" ],
+    "result" : "37",
+    "index" : 5,
+    "active" : true
+  }, {
+    "arguments" : [ "401", "780", "779" ],
+    "result" : "30",
+    "index" : 6,
+    "active" : true
+  } ],
+  "date" : "2020.09.25",
+  "contestName" : "TopCoder SRM #790",
+  "testClasses" : [ ],
+  "fqn" : "codeforces.BobtheBuilder",
+  "failOnOverflow" : false,
+  "memoryLimit" : "256M"
+}
